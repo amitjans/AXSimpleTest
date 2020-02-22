@@ -12,7 +12,7 @@
 #include <string.h>
 #include <ax12.h>
 
-char d = '';
+char d = 'a';
 
 void setup()
 {
@@ -29,22 +29,22 @@ void loop()
      char c = Serial.read();
      
      if(c == 'n'){
-       nod(10, 3, 516, 496);
+       nod(20, 3, 526, 486);
      } else if(c == 's'){
-       shake(10, 3, 528, 496);
+       shake(20, 3, 538, 486);
      } else if (c == 'c'){
        if(d == 'r'){
-         center(10, 528);
+         center(20, 486);
        } else {
-         center(10, )
+         center(20, 538);
        } 
      } else if (c == 'r'){
        d = 'r';
-       awaitr(10, 528);
+       awayr(20, 486);
+       
      } else if (c == 'l'){
        d = 'l';
-       awaitr(10, 496);
-
+       awayl(20, 538);
      }
    }
  }
@@ -53,6 +53,7 @@ void loop()
 int nod(int s, int t, int top, int down){
   for(int i = 513; i < top; i++){
     SetPosition(2, i);
+    delay(s);
   }
   for(int i = 0; i < t; i++){
     for(int j = top; j > down; j--){
@@ -66,35 +67,55 @@ int nod(int s, int t, int top, int down){
   }
   for(int i = top; i >= 512; i--){
     SetPosition(2, i);
+    delay(s);
   }
 }
 
 int shake(int s, int t, int top, int down){
+  for(int i = 512; i > down; i--){
+    SetPosition(1, i);
+    delay(s);
+  }
   for(int i = 0; i < t; i++){
-    for(int j = 512; j > down; j--){
-      SetPosition(1, j);
-      delay(s);
-    }
     for(int j = down; j < top; j++){
       SetPosition(1, j);
       delay(s);
     }
+    for(int j = top; j > down; j--){
+      SetPosition(1, j);
+      delay(s);
+    }
   }
-  for(int i = top; i >= 512; i--){
+  for(int i = down; i <= 512; i++){
     SetPosition(1, i);
+    delay(s);
   }
 }
 
-int awaitr(int s, int top){
+int awayl(int s, int top){
   for(int j = 512; j < top; j++){
       SetPosition(1, j);
       delay(s);
     }
 }
 
-int awaitl(int s, int top){
+int awayr(int s, int top){
   for(int j = 512; j > top; j--){
       SetPosition(1, j);
+      delay(s);
+    }
+}
+
+int headup(int s, int top){
+  for(int j = 512; j < top; j++){
+      SetPosition(2, j);
+      delay(s);
+    }
+}
+
+int headdown(int s, int down){
+  for(int j = 512; j > down; j--){
+      SetPosition(2, j);
       delay(s);
     }
 }
