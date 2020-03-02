@@ -27,24 +27,39 @@ void loop()
    if (Serial.available() > 0) {
      // Get next command from Serial (add 1 for final 0)
      char c = Serial.read();
-     
+     //n - si
+     //s - no
+     //c - centrar
+     //r - mirar derecha
+     //l - mirar izquierda
+     //u - arriba
+     //d - abajo
      if(c == 'n'){
        nod(20, 3, 526, 486);
      } else if(c == 's'){
        shake(20, 3, 538, 486);
      } else if (c == 'c'){
        if(d == 'r'){
-         center(20, 486);
+         center(20, 1, 486);
+       } else if(d == 'l'){
+         center(20, 1, 538);
+       } else if(d == 'u'){
+         center(20, 2, 526);
        } else {
-         center(20, 538);
-       } 
+         center(20, 2, 486);
+       }
      } else if (c == 'r'){
        d = 'r';
        awayr(20, 486);
-       
      } else if (c == 'l'){
        d = 'l';
        awayl(20, 538);
+     } else if (c == 'u'){
+       d = 'u';
+       headup(20, 538);
+     } else if (c == 'd'){
+       d = 'd';
+       headdown(20, 486);
      }
    }
  }
@@ -120,15 +135,15 @@ int headdown(int s, int down){
     }
 }
 
-int center(int s, int from){
+int center(int s, int engine, int from){
   if(from > 512){
     for(int j = from; j >= 512; j--){
-      SetPosition(1, j);
+      SetPosition(engine, j);
       delay(s);
     }
   } else {
     for(int j = from; j <= 512; j++){
-      SetPosition(1, j);
+      SetPosition(engine, j);
       delay(s);
     }
   }
