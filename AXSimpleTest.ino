@@ -44,7 +44,7 @@ void loop()
        } else if(d == 'l'){
          center(20, 1, 538);
        } else if(d == 'u'){
-         center(20, 2, 526);
+         center(20, 2, 538);
        } else {
          center(20, 2, 486);
        }
