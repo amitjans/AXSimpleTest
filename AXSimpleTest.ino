@@ -35,9 +35,11 @@ void loop()
      //u - arriba
      //d - abajo
      if(c == 'n'){
-       nod(20, 3, 526, 486);
+       //delay,iterations,center,up,down
+       nod(20, 3, 512, 526, 486);
      } else if(c == 's'){
-       shake(20, 3, 538, 486);
+       //delay,iterations,center,left,right
+       shake(20, 3, 512, 538, 486);
      } else if (c == 'c'){
        if(d == 'r'){
          center(20, 1, 486);
@@ -50,86 +52,65 @@ void loop()
        }
      } else if (c == 'r'){
        d = 'r';
-       awayr(20, 486);
+       awayr(20, 512, 486);
      } else if (c == 'l'){
        d = 'l';
-       awayl(20, 538);
+       awayl(20, 512, 538);
      } else if (c == 'u'){
        d = 'u';
-       headup(20, 538);
+       headup(20, 512, 538);
      } else if (c == 'd'){
        d = 'd';
-       headdown(20, 486);
+       headdown(20, 512, 486);
+     } else if (c == 'a'){
+       d = 'd';
+       anger();
      }
    }
  }
  
 // 1 step = 0.35º
-int nod(int s, int t, int top, int down){
-  for(int i = 513; i < top; i++){
-    SetPosition(2, i);
-    delay(s);
-  }
+int nod(int s, int t, int ini, int top, int down){
+  headup(s, ini, top);
   for(int i = 0; i < t; i++){
-    for(int j = top; j > down; j--){
-      SetPosition(2, j);
-      delay(s);
-    }
-    for(int j = down; j < top; j++){
-      SetPosition(2, j);
-      delay(s);
-    }
+    headdown(s, top, down);
+    headup(s, down, top);
   }
-  for(int i = top; i >= 512; i--){
-    SetPosition(2, i);
-    delay(s);
-  }
+  headdown(s, top, ini);
 }
 
-int shake(int s, int t, int top, int down){
-  for(int i = 512; i > down; i--){
-    SetPosition(1, i);
-    delay(s);
-  }
+int shake(int s, int t, int ini, int top, int down){
+  awayr(s, ini, down);
   for(int i = 0; i < t; i++){
-    for(int j = down; j < top; j++){
-      SetPosition(1, j);
-      delay(s);
-    }
-    for(int j = top; j > down; j--){
-      SetPosition(1, j);
-      delay(s);
-    }
+    awayl(s, down, top);  
+    awayr(s, top, down);
   }
-  for(int i = down; i <= 512; i++){
-    SetPosition(1, i);
-    delay(s);
-  }
+  awayl(s, down, ini);
 }
 
-int awayl(int s, int top){
-  for(int j = 512; j < top; j++){
+int awayl(int s, int ini, int top){
+  for(int j = ini; j < top; j++){
       SetPosition(1, j);
       delay(s);
     }
 }
 
-int awayr(int s, int top){
-  for(int j = 512; j > top; j--){
+int awayr(int s, int ini, int top){
+  for(int j = ini; j > top; j--){
       SetPosition(1, j);
       delay(s);
     }
 }
 
-int headup(int s, int top){
-  for(int j = 512; j < top; j++){
+int headup(int s, int ini, int top){
+  for(int j = ini; j < top; j++){
       SetPosition(2, j);
       delay(s);
     }
 }
 
-int headdown(int s, int down){
-  for(int j = 512; j > down; j--){
+int headdown(int s, int ini, int down){
+  for(int j = ini; j > down; j--){
       SetPosition(2, j);
       delay(s);
     }
@@ -147,6 +128,13 @@ int center(int s, int engine, int from){
       delay(s);
     }
   }
+}
+
+int anger(){
+  headdown(20, 512, 486);
+  awayr(20, 512, 466);
+  shake(20, 3, 466, 492, 440);
+  awayl(20, 466, 513);
 }
 
 
