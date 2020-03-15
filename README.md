@@ -3,7 +3,7 @@
 Aplicación para el control de los motores del cuello del robot Eva
 
 # Movimientos de la cabeza
-Comandos
+Comandos:
 - n: si
 - s: no
 - c: centrar
