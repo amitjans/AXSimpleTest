@@ -51,19 +51,14 @@ void loop()
          center(20, 2, 486);
        }
      } else if (c == 'r'){
-       d = 'r';
        awayr(20, 512, 486);
      } else if (c == 'l'){
-       d = 'l';
        awayl(20, 512, 538);
      } else if (c == 'u'){
-       d = 'u';
        headup(20, 512, 538);
      } else if (c == 'd'){
-       d = 'd';
        headdown(20, 512, 486);
      } else if (c == 'a'){
-       d = 'd';
        anger();
      }
    }
@@ -93,6 +88,7 @@ int awayl(int s, int ini, int top){
       SetPosition(1, j);
       delay(s);
     }
+    d = 'l';
 }
 
 int awayr(int s, int ini, int top){
@@ -100,6 +96,7 @@ int awayr(int s, int ini, int top){
       SetPosition(1, j);
       delay(s);
     }
+    d = 'r';
 }
 
 int headup(int s, int ini, int top){
@@ -107,6 +104,7 @@ int headup(int s, int ini, int top){
       SetPosition(2, j);
       delay(s);
     }
+    d = 'u';
 }
 
 int headdown(int s, int ini, int down){
@@ -114,6 +112,7 @@ int headdown(int s, int ini, int down){
       SetPosition(2, j);
       delay(s);
     }
+    d = 'd';
 }
 
 int center(int s, int engine, int from){
@@ -132,9 +131,10 @@ int center(int s, int engine, int from){
 
 int anger(){
   headdown(20, 512, 486);
-  awayr(20, 512, 466);
-  shake(20, 3, 466, 492, 440);
-  awayl(20, 466, 513);
+  awayr(20, 512, 456);
+  shake(20, 3, 456, 492, 440);
+  awayl(20, 456, 513);
+  d = 'd';
 }
 
 
