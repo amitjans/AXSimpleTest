@@ -64,7 +64,7 @@ void loop()
    }
  }
  
-// 1 step = 0.35º
+// 1 step = 0.29º
 int nod(int s, int t, int ini, int top, int down){
   headup(s, ini, top);
   for(int i = 0; i < t; i++){
