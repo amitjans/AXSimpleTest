@@ -1,11 +1,3 @@
-/***************************
- * AXSimpleTest
- * This sketch sends positional commands to the AX servo 
- * attached to it - the servo must set to ID # 1
- * The sketch will send a value, i, to the servo.
- * 'For' loops are used to increment and decrement the value of 'i'
- ***************************/
-
 //import ax12 library to send DYNAMIXEL commands
 #include <stdlib.h>
 #include <stdio.h>
@@ -27,13 +19,6 @@ void loop()
    if (Serial.available() > 0) {
      // Get next command from Serial (add 1 for final 0)
      char c = Serial.read();
-     //n - si
-     //s - no
-     //c - centrar
-     //r - mirar derecha
-     //l - mirar izquierda
-     //u - arriba
-     //d - abajo
      if(c == 'n'){
        //delay,iterations,center,up,down
        nod(20, 3, 512, 526, 486);
@@ -51,13 +36,13 @@ void loop()
          center(20, 2, 486);
        }
      } else if (c == 'r'){
-       awayr(20, 512, 486);
+       down_right(20, 1, 512, 486);
      } else if (c == 'l'){
-       awayl(20, 512, 538);
+       up_left(20, 1, 512, 538);
      } else if (c == 'u'){
-       headup(20, 512, 538);
+       up_left(20, 2, 512, 538);
      } else if (c == 'd'){
-       headdown(20, 512, 486);
+       down_right(20, 2, 512, 486);
      } else if (c == 'a'){
        anger();
      }
@@ -66,74 +51,53 @@ void loop()
  
 // 1 step = 0.29º
 int nod(int s, int t, int ini, int top, int down){
-  headup(s, ini, top);
+  up_left(s, 2, ini, top);
   for(int i = 0; i < t; i++){
-    headdown(s, top, down);
-    headup(s, down, top);
+    down_right(s, 2, top, down);
+    up_left(s, 2, down, top);
   }
-  headdown(s, top, ini);
+  down_right(s, 2, top, ini);
 }
 
 int shake(int s, int t, int ini, int top, int down){
-  awayr(s, ini, down);
+  down_right(s, 1, ini, down);
   for(int i = 0; i < t; i++){
-    awayl(s, down, top);  
-    awayr(s, top, down);
+    up_left(s, 1, down, top);  
+    down_right(s, 1, top, down);
   }
-  awayl(s, down, ini);
+  up_left(s, 1, down, ini);
 }
 
-int awayl(int s, int ini, int top){
+int up_left(int s, int engine, int ini, int top){
   for(int j = ini; j < top; j++){
-      SetPosition(1, j);
+      SetPosition(engine, j);
       delay(s);
     }
-    d = 'l';
+    d = (engine == 1 ? 'l' : 'u');
 }
 
-int awayr(int s, int ini, int top){
+int down_right(int s, int engine, int ini, int top){
   for(int j = ini; j > top; j--){
-      SetPosition(1, j);
+      SetPosition(engine, j);
       delay(s);
     }
-    d = 'r';
-}
-
-int headup(int s, int ini, int top){
-  for(int j = ini; j < top; j++){
-      SetPosition(2, j);
-      delay(s);
-    }
-    d = 'u';
-}
-
-int headdown(int s, int ini, int down){
-  for(int j = ini; j > down; j--){
-      SetPosition(2, j);
-      delay(s);
-    }
-    d = 'd';
+    d = (engine == 1 ? 'r' : 'd');
 }
 
 int center(int s, int engine, int from){
   if(from > 512){
-    for(int j = from; j >= 512; j--){
-      SetPosition(engine, j);
-      delay(s);
-    }
+    down_right(s, engine, from, 511);
   } else {
-    for(int j = from; j <= 512; j++){
-      SetPosition(engine, j);
-      delay(s);
-    }
+    up_left(s, engine, from, 513);
   }
+  d = 'c';
 }
 
 int anger(){
-  headdown(20, 512, 486);
-  awayr(20, 512, 456);
+  down_right(20, 2, 512, 486);
+  down_right(20, 1, 512, 456);
   shake(20, 3, 456, 492, 440);
-  awayl(20, 456, 513);
+  up_left(20, 1, 456, 513);
   d = 'd';
 }
 
