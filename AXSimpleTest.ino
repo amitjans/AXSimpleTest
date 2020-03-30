@@ -1,16 +1,15 @@
 //import ax12 library to send DYNAMIXEL commands
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include <ax12.h>
 
 char d = 'a';
+int steps = 26;
 
 void setup()
 {
     Serial.begin(9600);
     SetPosition(1,512); //set the position of servo # 1 to '0'
     SetPosition(2,512);
+    steps = 26;
     //delay(10);//wait for servo to move
 }
 
@@ -21,30 +20,32 @@ void loop()
      char c = Serial.read();
      if(c == 'n'){
        //delay,iterations,center,up,down
-       nod(20, 3, 512, 526, 486);
+       nod(20, 3, 512, (512 + (steps/2)), (512 - steps));
      } else if(c == 's'){
        //delay,iterations,center,left,right
-       shake(20, 3, 512, 538, 486);
+       shake(20, 3, 512, (512 + steps), (512 - steps));
      } else if (c == 'c'){
        if(d == 'r'){
-         center(20, 1, 486);
+         center(20, 1, (512 - steps));
        } else if(d == 'l'){
-         center(20, 1, 538);
+         center(20, 1, (512 + steps));
        } else if(d == 'u'){
-         center(20, 2, 538);
+         center(20, 2, (512 + steps));
        } else {
-         center(20, 2, 486);
+         center(20, 2, (512 - steps));
        }
      } else if (c == 'r'){
-       down_right(20, 1, 512, 486);
+       down_right(20, 1, 512, (512 - steps));
      } else if (c == 'l'){
-       up_left(20, 1, 512, 538);
+       up_left(20, 1, 512, (512 + steps));
      } else if (c == 'u'){
-       up_left(20, 2, 512, 538);
+       up_left(20, 2, 512, (512 + steps));
      } else if (c == 'd'){
-       down_right(20, 2, 512, 486);
+       down_right(20, 2, 512, (512 - steps));
      } else if (c == 'a'){
        anger();
+     } else {
+       Serial.println('Pasos establecidos en: ' + c);
      }
    }
  }
@@ -94,9 +95,9 @@ int center(int s, int engine, int from){
 }
 
 int anger(){
-  down_right(20, 2, 512, 486);
+  down_right(20, 2, 512, (512 - steps));
   down_right(20, 1, 512, 456);
-  shake(20, 3, 456, 492, 440);
+  shake(20, 3, 456, (456 + steps), (456 - steps));
   up_left(20, 1, 456, 513);
   d = 'd';
 }
