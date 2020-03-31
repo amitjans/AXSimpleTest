@@ -1,7 +1,4 @@
 //import ax12 library to send DYNAMIXEL commands
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include <ax12.h>
 
 char d = 'a';
