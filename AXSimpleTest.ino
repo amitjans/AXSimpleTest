@@ -60,6 +60,7 @@ char tiltPensar[SIZE_EMO] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 int valorPanAnt;
 
 char d = 'a';
+int sdelay = 10;
 
 void setup()
 {
@@ -83,45 +84,42 @@ void setup()
 
 void loop(){
   if(Serial.available()>0){
-    if (Serial.available() > 0) {
-     // Get next command from Serial (add 1 for final 0)
      char c = Serial.read();
      if(c == 'n'){
        //delay,iterations,center,up,down
-       nod(20, 3, 1500, 1514, 1474);
+       nod(sdelay, 3, 1500, 1600, 1300);
      } else if(c == 's'){
        //delay,iterations,center,left,right
-       shake(20, 3, 1500, 11514, 1474);
+       shake(sdelay, 3, 1500, 1700, 1300);
      } else if (c == 'c'){
        if(d == 'r'){
-         center(20, 1, 1474);
+         center(sdelay, 1, 1300);
        } else if(d == 'l'){
-         center(20, 1, 11514);
+         center(sdelay, 1, 1700);
        } else if(d == 'u'){
-         center(20, 2, 11514);
+         center(sdelay, 2, 1700);
        } else {
-         center(20, 2, 1474);
+         center(sdelay, 2, 1300);
        }
        d = 'c';
      } else if (c == 'r'){
-       down_right(20, 1, 1500, 1474);
+       down_right(sdelay, 1, 1500, 1300);
        d = 'r';
      } else if (c == 'l'){
-       up_left(20, 1, 1500, 11514);
+       up_left(sdelay, 1, 1500, 1700);
        d = 'l';
      } else if (c == 'u'){
-       up_left(20, 2, 1500, 11514);
+       up_left(sdelay, 2, 1500, 1700);
        d = 'u';
      } else if (c == 'd'){
-       down_right(20, 2, 1500, 1474);
+       down_right(sdelay, 2, 1500, 1300);
        d = 'd';
      } else if (c == 'a'){
        anger();
        d = 'd';
      }
    }
-  }
-}
+   }
 
 void movimientoDerecha(){
   int valorPan = 1500;
@@ -190,7 +188,7 @@ void movimientoPensar2(){
 
 //***********************************************************************************************************//
 
-int nod(int s, int t, int ini, int top, int down){
+void nod(int s, int t, int ini, int top, int down){
   up_left(s, 2, ini, top);
   for(int i = 0; i < t; i++){
     down_right(s, 2, top, down);
@@ -199,7 +197,7 @@ int nod(int s, int t, int ini, int top, int down){
   down_right(s, 2, top, ini);
 }
 
-int shake(int s, int t, int ini, int top, int down){
+void shake(int s, int t, int ini, int top, int down){
   down_right(s, 1, ini, down);
   for(int i = 0; i < t; i++){
     up_left(s, 1, down, top);  
@@ -208,29 +206,29 @@ int shake(int s, int t, int ini, int top, int down){
   up_left(s, 1, down, ini);
 }
 
-int up_left(int s, int engine, int ini, int top){
+void up_left(int s, int engine, int ini, int top){
   for(int j = ini; j < top; j++){
       if(engine == 1){
         panServo.writeMicroseconds(j);
       } else {
-        tiltServo.writeMicroseconds(j)
+        tiltServo.writeMicroseconds(j);
       }        
       delay(s);
     }
 }
 
-int down_right(int s, int engine, int ini, int top){
+void down_right(int s, int engine, int ini, int top){
   for(int j = ini; j > top; j--){
       if(engine == 1){
         panServo.writeMicroseconds(j);
       } else {
-        tiltServo.writeMicroseconds(j)
+        tiltServo.writeMicroseconds(j);
       }
       delay(s);
     }
 }
 
-int center(int s, int engine, int from){
+void center(int s, int engine, int from){
   if(from > 1500){
     down_right(s, engine, from, 1499);
   } else {
@@ -238,9 +236,9 @@ int center(int s, int engine, int from){
   }
 }
 
-int anger(){
-  down_right(20, 2, 1500, 1474);
-  down_right(20, 1, 1500, 1444);
-  shake(20, 3, 1444, 1470, 1418);
-  up_left(20, 1, 1444, 1501);
+void anger(){
+  down_right(sdelay, 2, 1500, 1300);
+  down_right(sdelay, 1, 1500, 1300);
+  shake(sdelay, 3, 1300, 1400, 1200);
+  up_left(sdelay, 1, 1300, 1501);
 }
