@@ -102,16 +102,22 @@ void loop(){
        } else {
          center(20, 2, 1474);
        }
+       d = 'c';
      } else if (c == 'r'){
        down_right(20, 1, 1500, 1474);
+       d = 'r';
      } else if (c == 'l'){
        up_left(20, 1, 1500, 11514);
+       d = 'l';
      } else if (c == 'u'){
        up_left(20, 2, 1500, 11514);
+       d = 'u';
      } else if (c == 'd'){
        down_right(20, 2, 1500, 1474);
+       d = 'd';
      } else if (c == 'a'){
        anger();
+       d = 'd';
      }
    }
   }
@@ -211,7 +217,6 @@ int up_left(int s, int engine, int ini, int top){
       }        
       delay(s);
     }
-    d = (engine == 1 ? 'l' : 'u');
 }
 
 int down_right(int s, int engine, int ini, int top){
@@ -223,7 +228,6 @@ int down_right(int s, int engine, int ini, int top){
       }
       delay(s);
     }
-    d = (engine == 1 ? 'r' : 'd');
 }
 
 int center(int s, int engine, int from){
@@ -232,7 +236,6 @@ int center(int s, int engine, int from){
   } else {
     up_left(s, engine, from, 1501);
   }
-  d = 'c';
 }
 
 int anger(){
@@ -240,5 +243,4 @@ int anger(){
   down_right(20, 1, 1500, 1444);
   shake(20, 3, 1444, 1470, 1418);
   up_left(20, 1, 1444, 1501);
-  d = 'd';
 }
