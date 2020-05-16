@@ -18,26 +18,26 @@ void loop()
    if (Serial.available() > 0) {
      // Get next command from Serial (add 1 for final 0)
      char c = Serial.read();
-     if(c == 'n'){
+     if(c == 'n' || c == 'N'){
        //iterations,up,down
-       nod(3, 526, 486);
-     } else if(c == 's'){
+       nod(3, (c == 'N' ? 526 : ((512 + 526) / 2)), (c == 'N' ? 486 : ((512 + 486) / 2)));
+     } else if(c == 's' || c == 'S'){
        //iterations,left,right
-       shake(3, 538, 486);
+       shake(3, (c == 'S' ? 538 : ((512 + 538) / 2)), (c == 'S' ? 486 : ((512 + 486) / 2)));
      } else if (c == 'c'){
        center();
        d = 'c';
-     } else if (c == 'r'){
-       engine1 = down_right(1, 486);
+     } else if (c == 'r' || c == 'R'){
+       engine1 = down_right(1, c == 'R' ? 486 : ((512 + 486) / 2));
        d = 'r';
-     } else if (c == 'l'){
-       engine1 = up_left(1, 538);
+     } else if (c == 'l' || c == 'L'){
+       engine1 = up_left(1, c == 'L' ? 538 : ((512 + 538) / 2));
        d = 'l';
-     } else if (c == 'u'){
-       engine2 = up_left(2, 538);
+     } else if (c == 'u' || c == 'U'){
+       engine2 = up_left(2, c == 'U' ? 538 : ((512 + 538) / 2));
        d = 'u';
-     } else if (c == 'd'){
-       engine2 = down_right(2, 486);
+     } else if (c == 'd' || c == 'D'){
+       engine2 = down_right(2, c == 'D' ? 486 : ((512 + 486) / 2));
        d = 'd';
      } else if (c == 'a'){
        anger();
@@ -58,7 +58,7 @@ int nod(int t, int top, int down){
 }
 
 int shake(int t, int top, int down){
-  int temp = engine2;
+  int temp = engine1;
   engine1 = down_right(1, down);
   for(int i = 0; i < t; i++){
     engine1 = up_left(1, top);  
