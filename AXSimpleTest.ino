@@ -48,19 +48,12 @@ int index = 0;
 int panBefore = 0;
 int tiltBefore = 0;
 
-
-//Tristeza 1
-char panTristeza [SIZE_EMO] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-4,-7,-9,-11,-12,-13,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-14,-12,-10,-6,4,4,6,7,7,7,8,10,11,12,12,12,12,12,13,12,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,12,13,13,13,12,11,9,6,4,4,2,2,5,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,-4,-4,-5,-5,-5,-6,-6,-7,-8,-9,-9,-9,-9,-10,-10,-10,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-10,-10,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,-32};
-char tiltTristeza [SIZE_EMO] = {0,-4,-5,-6,-6,-6,-7,-7,-7,-8,-8,-9,-9,-10,-10,-10,-10,-10,-10,-10,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-11,-10,-8,-7,-4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,3,3,4,6,7,7,8,9,9,10,10,10,10,9,6,3,5,6,7,7,8,9,9,10,11,11,11,11,11,11,11,11,9,8,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58};
-
-//Pensar
-char panPensar[SIZE_EMO] = {0,-3,-3,-4,-4,-4,-4,-5,-5,-6,-6,-6,-6,-7,-7,-7,-8,-8,-8,-8,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,3,3,4,4,5,5,6,6,7,7,7,7,7,8,8,8,9,9,9,9,9,9,9,9,8,8,8,8,8,8,8,8,8,8,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,-4,-5,-5,-6,-6,-7,-7,-7,-7,-7,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-8,-4,-5,-6,-7,-7,-8,-8,-8,-8,-8,8,9,10,10};
-char tiltPensar[SIZE_EMO] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,3,3,3,4,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,5,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,-5,-5,-6,-6,-6,-7,-7,-7,-7,-7,-8,-8,-9,-9,-9,-9,-9,-9,-9,-8,-8,-8,-7,-7,-6,-5,-4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,5,5,5,10,5,5,5,5,5,5,5,5,5,5,5,-5,-5,-5};
-
 int valorPanAnt;
 
 char d = 'a';
-int sdelay = 10;
+int s = 10;
+int engine1 = 1500;
+int engine2 = 1500;
 
 void setup()
 {
@@ -85,34 +78,26 @@ void setup()
 void loop(){
   if(Serial.available()>0){
      char c = Serial.read();
-     if(c == 'n'){
+     if(c == 'n' || c == 'N'){
        //delay,iterations,center,up,down
-       nod(sdelay, 3, 1500, 1600, 1300);
-     } else if(c == 's'){
+       nod(3, (c == 'N' ? 1600 : ((1500 + 1600) / 2)), (c == 'N' ? 1300 : ((1500 + 1300) / 2)));
+     } else if(c == 's' || c == 'S'){
        //delay,iterations,center,left,right
-       shake(sdelay, 3, 1500, 1700, 1300);
+       shake(3, (c == 'S' ? 1700 : ((1500 + 1700) / 2)), (c == 'S' ? 1300 : ((1500 + 1300) / 2)));
      } else if (c == 'c'){
-       if(d == 'r'){
-         center(sdelay, 1, 1300);
-       } else if(d == 'l'){
-         center(sdelay, 1, 1700);
-       } else if(d == 'u'){
-         center(sdelay, 2, 1700);
-       } else {
-         center(sdelay, 2, 1300);
-       }
+       center();
        d = 'c';
-     } else if (c == 'r'){
-       down_right(sdelay, 1, 1500, 1300);
+     } else if (c == 'r' || c == 'R'){
+       engine1 = down_right(1, c == 'R' ? 1300 : ((1500 + 1300) / 2));
        d = 'r';
-     } else if (c == 'l'){
-       up_left(sdelay, 1, 1500, 1700);
+     } else if (c == 'l' || c == 'L'){
+       engine1 = up_left(1, c == 'L' ? 1700 : ((1500 + 1700) / 2));
        d = 'l';
-     } else if (c == 'u'){
-       up_left(sdelay, 2, 1500, 1700);
+     } else if (c == 'u' || c == 'U'){
+       engine2 = up_left(2, c == 'U' ? 1700 : ((1500 + 1700) / 2));
        d = 'u';
-     } else if (c == 'd'){
-       down_right(sdelay, 2, 1500, 1300);
+     } else if (c == 'd' || c == 'D'){
+       engine2 = down_right(2, c == 'D' ? 1300 : ((1500 + 1300) / 2));
        d = 'd';
      } else if (c == 'a'){
        anger();
@@ -121,124 +106,73 @@ void loop(){
    }
    }
 
-void movimientoDerecha(){
-  int valorPan = 1500;
-  int valorTilt = 1500;
-  int i;
-  for(i=valorPan;i>=1200; i-=10){
-    panServo.writeMicroseconds(i);
-    delay(30);
-  }
-  valorPanAnt = i;
-}
-
-void movimientoCentro(){
- 
- if(valorPanAnt > 1500){
-  for(int i=valorPanAnt;i>=1500; i-=10){
-    panServo.writeMicroseconds(i);
-    delay(30);
-  }
- }
- else
-  if(valorPanAnt < 1500){
-    for(int i=valorPanAnt;i<=1500; i+=10){
-      panServo.writeMicroseconds(i);
-      delay(30);
-    }  
-  }
-}
-
-void movimientoTristeza(){
-  int valorPan = 1500;
-  int valorTilt = 1500;
-  for(int i=0;i<SIZE_EMO;i++){
-    valorPan+=panTristeza[i];
-    valorTilt+=tiltTristeza[i];
-    panServo.writeMicroseconds(valorPan);   // sets the servo position based on the latest panServo value
-    tiltServo.writeMicroseconds(valorTilt); // sets the servo position based on the latest tiltServo value
-    delay(25);
-  } 
-}
-
-
-void movimientoPensar(){
-  int valorPan = 1500;
-  int valorTilt = 1500;
-  for(int i=0;i<SIZE_EMO;i++){
-    valorPan+=panPensar[i];
-    valorTilt+=tiltPensar[i];
-    panServo.writeMicroseconds(valorPan);   // sets the servo position based on the latest panServo value
-    tiltServo.writeMicroseconds(valorTilt); // sets the servo position based on the latest tiltServo value
-    delay(20);
-  }
-  valorPanAnt = valorPan;
-}
-
-void movimientoPensar2(){
-  int valorPan = 1500;
-  int valorTilt = 1500;
-  for(int i=0;i<SIZE_EMO;i++){
-    panServo.writeMicroseconds(valorPan);   // sets the servo position based on the latest panServo value
-    tiltServo.writeMicroseconds(valorTilt); // sets the servo position based on the latest tiltServo value
-    delay(20);
-  }
-  valorPanAnt = valorPan;
-}
-
 //***********************************************************************************************************//
 
-void nod(int s, int t, int ini, int top, int down){
-  up_left(s, 2, ini, top);
+int nod(int t, int top, int down){
+  int temp = engine2;
+  engine2 = up_left(2, top);
   for(int i = 0; i < t; i++){
-    down_right(s, 2, top, down);
-    up_left(s, 2, down, top);
+    engine2 = down_right(2, down);
+    engine2 = up_left(2, top);
   }
-  down_right(s, 2, top, ini);
+  engine2 = down_right(2, temp);
 }
 
-void shake(int s, int t, int ini, int top, int down){
-  down_right(s, 1, ini, down);
+int shake(int t, int top, int down){
+  int temp = engine1;
+  engine1 = down_right(1, down);
   for(int i = 0; i < t; i++){
-    up_left(s, 1, down, top);  
-    down_right(s, 1, top, down);
+    engine1 = up_left(1, top);  
+    engine1 = down_right(1, down);
   }
-  up_left(s, 1, down, ini);
+  engine1 = up_left(1, temp);
 }
 
-void up_left(int s, int engine, int ini, int top){
-  for(int j = ini; j < top; j++){
-      if(engine == 1){
-        panServo.writeMicroseconds(j);
-      } else {
-        tiltServo.writeMicroseconds(j);
-      }        
-      delay(s);
+int up_left(int engine, int top){
+  int j = (engine == 1 ? engine1 : engine2);
+  while(j != top){
+    j++;
+    SetPosition(engine, j);
+    delay(s);
+  }
+  return j;
+}
+
+int down_right(int engine, int top){
+  int j = (engine == 1 ? engine1 : engine2);
+  while(j != top){
+    j--;
+    SetPosition(engine, j);
+    delay(s);
+  }
+  return j;
+}
+
+void center(){
+  while(engine1 != 1500 || engine2 != 1500){
+    if(engine1 != 1500){
+      if(engine1 > 1500){ engine1--; } else { engine1++; }
+      SetPosition(1, engine1);
     }
-}
-
-void down_right(int s, int engine, int ini, int top){
-  for(int j = ini; j > top; j--){
-      if(engine == 1){
-        panServo.writeMicroseconds(j);
-      } else {
-        tiltServo.writeMicroseconds(j);
-      }
-      delay(s);
+    if(engine2 != 1500){
+      if(engine2 > 1500){ engine2--; } else { engine2++; }
+      SetPosition(2, engine2);
     }
-}
-
-void center(int s, int engine, int from){
-  if(from > 1500){
-    down_right(s, engine, from, 1499);
-  } else {
-    up_left(s, engine, from, 1501);
+    delay(s);
   }
 }
 
 void anger(){
-  down_right(sdelay, 2, 1500, 1300);
-  down_right(sdelay, 1, 1500, 1300);
-  shake(sdelay, 3, 1300, 1400, 1200);
-  up_left(sdelay, 1, 1300, 1501);
+  engine2 = down_right(2, 1300);
+  engine1 = down_right(1, 1220);
+  shake(3, 1316, 1176);
+  engine1 = up_left(1, 1500);
+}
+
+void SetPosition(int engine, int pos){
+  if(engine == 1){
+    panServo.writeMicroseconds(pos);
+  } else {
+    tiltServo.writeMicroseconds(pos);
+  }
 }
