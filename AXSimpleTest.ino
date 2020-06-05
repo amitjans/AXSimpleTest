@@ -33,17 +33,6 @@ int horizontalValueMapped, verticalValueMapped;//variables to hold mapped readin
 int panValue = 1500;   //current positional value being sent to the pan servo.
 int tiltValue = 1500;  //current positional value being sent to the tilt servo.
 
-//State Variables
-int laserState = LOW;         //The current state of the laser module
-int buttonState;             // the current state of the pushbuton
-int lastButtonState = LOW;   // the previous reading from the input pin
-
-//Timing variables for button debouncing
-long lastDebounceTime = 0;  // the last time the output pin was toggled. This variable is a 'long' because it may need to hold many milliseconds, and a 'long' will afford more space than an 'int'
-int debounceDelay = 50;    // the amount of time that that a button must be held, for a reading to register (in milliseconds)
-
-//int panTristeza [SIZE_EMO];
-//int tiltTristeza [SIZE_EMO];
 int index = 0;
 int panBefore = 0;
 int tiltBefore = 0;
@@ -80,24 +69,24 @@ void loop(){
      char c = Serial.read();
      if(c == 'n' || c == 'N'){
        //delay,iterations,center,up,down
-       nod(3, (c == 'N' ? 1600 : ((1500 + 1600) / 2)), (c == 'N' ? 1300 : ((1500 + 1300) / 2)));
+       nod(3, (c == 'N' ? 1600 : ((1500 + 1600) / 2)), (c == 'N' ? 1400 : ((1500 + 1400) / 2)));
      } else if(c == 's' || c == 'S'){
        //delay,iterations,center,left,right
-       shake(3, (c == 'S' ? 1700 : ((1500 + 1700) / 2)), (c == 'S' ? 1300 : ((1500 + 1300) / 2)));
+       shake(3, (c == 'S' ? 1600 : ((1500 + 1600) / 2)), (c == 'S' ? 1400 : ((1500 + 1400) / 2)));
      } else if (c == 'c'){
        center();
        d = 'c';
      } else if (c == 'r' || c == 'R'){
-       engine1 = down_right(1, c == 'R' ? 1300 : ((1500 + 1300) / 2));
+       engine1 = down_right(1, c == 'R' ? 1400 : ((1500 + 1400) / 2));
        d = 'r';
      } else if (c == 'l' || c == 'L'){
        engine1 = up_left(1, c == 'L' ? 1700 : ((1500 + 1700) / 2));
        d = 'l';
      } else if (c == 'u' || c == 'U'){
-       engine2 = up_left(2, c == 'U' ? 1700 : ((1500 + 1700) / 2));
+       engine2 = up_left(2, c == 'U' ? 1600 : ((1500 + 1600) / 2));
        d = 'u';
      } else if (c == 'd' || c == 'D'){
-       engine2 = down_right(2, c == 'D' ? 1300 : ((1500 + 1300) / 2));
+       engine2 = down_right(2, c == 'D' ? 1400 : ((1500 + 1400) / 2));
        d = 'd';
      } else if (c == 'a'){
        anger();
@@ -163,9 +152,9 @@ void center(){
 }
 
 void anger(){
-  engine2 = down_right(2, 1300);
+  engine2 = down_right(2, 1400);
   engine1 = down_right(1, 1220);
-  shake(3, 1316, 1176);
+  shake(3, 1254, 1186);
   engine1 = up_left(1, 1500);
 }
 
