@@ -42,6 +42,8 @@ void loop()
      } else if (c == 'a'){
        anger();
        d = 'd';
+     } else {
+       onestep(c);
      }
    }
  }
@@ -106,6 +108,20 @@ int anger(){
   engine1 = down_right(1, 456);
   shake(3, 492, 440);
   engine1 = up_left(1, 512);
+}
+
+void onestep(char c){
+  if(c == 't'){
+    engine2++;
+  } else if(c == 'f'){
+    engine1++;
+  } else if(c == 'h'){
+    engine1--;
+  } else if(c == 'g'){
+    engine2--;
+  }
+  SetPosition(1, engine1);
+  SetPosition(2, engine2);
 }
 
 
