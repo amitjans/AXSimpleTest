@@ -17,4 +17,4 @@ Commands:
 - z: down and left
 - h: list of commands
 
-** Note: ** all commands except `c` can be used in `uppercase`, with the use of this format the movements become wider.
+**Note:** all commands except `c` can be used in `uppercase`, with the use of this format the movements become wider.
