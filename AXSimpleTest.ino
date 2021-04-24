@@ -41,7 +41,7 @@ void loop()
        sw(c == 'Z' ? 26 : 13);
      } else if ( c == 'h') {
        char code[] = {'c', 'r', 'l', 'u', 'd', 'R', 'L', 'U', 'D', 'n', 'N', 's', 'S', 'e', 'E', 'q', 'Q', 'x', 'X', 'z', 'Z'};
-       char *symbol[] = {"olarr", "rarr", "larr", "uarr", "darr", "rrarr", "llarr", "uuarr", "ddarr", "varr", "udarr", "harr", "ldarr", "nearr", "neArr", "nwarr", "nwArr", "searr", "seArr", "swarr", "swArr"};
+       char *symbol[] = {"olarr", "rarr", "larr", "uarr", "darr", "rrarr", "llarr", "uuarr", "ddarr", "varr", "udarr", "harr", "lrarr", "nearr", "neArr", "nwarr", "nwArr", "searr", "seArr", "swarr", "swArr"};
        String codes = "[";
        for (int i = 0; i < sizeof(code) - 1; i++){
          codes = codes + "{\"code\":\"" + code[i] + "\",\"symbol\":\"&" + symbol[i] + ";\"},";
@@ -97,7 +97,7 @@ void nod(int t, int top, int down){
     engine2 = down_right(2, down * 2);
     engine2 = up_left(2, top * 2);
   }
-  center();
+  engine2 = down_right(2, down);
 }
 
 void shake(int t, int top, int down){
@@ -107,7 +107,7 @@ void shake(int t, int top, int down){
     engine1 = up_left(1, top * 2);  
     engine1 = down_right(1, down * 2);
   }
-  center();
+  engine1 = up_left(1, top);
 }
 
 void ne(int steps){
