@@ -1,7 +1,7 @@
 //import ax12 library to send DYNAMIXEL commands
 #include <ax12.h>
 
-int s = 20;
+int s = 30;
 int engine1 = 512;
 int engine2 = 512;
 
